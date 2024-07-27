@@ -28,7 +28,7 @@ let navigationBar = (
                     </Button>
                   </Grid>
                   <Grid item>
-                    <Button color="inherit" className="font membershipBtn">
+                    <Button color="inherit" className="font membershipBtn" component={Link} to="/membership">
                       회원가입
                     </Button>
                   </Grid>
