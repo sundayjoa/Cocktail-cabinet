@@ -17,7 +17,8 @@ body{
 /*네비게이션*/
 .navigation{
   height: 9vh;
-  background: rgba(69, 165, 255, 0.8) !important;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .logo {
@@ -49,6 +50,18 @@ body{
   font-size: 25px !important;
   margin-right: 10px !important;
 }
+
+/*홈 화면*/
+.home-background{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60vh;
+  filter: brightness(50%);
+  z-index: -1;
+}
+
 
 .App {
   text-align: center;

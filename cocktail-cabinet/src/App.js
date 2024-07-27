@@ -48,6 +48,9 @@ function App() {
   return (
     <div>
       {navigationBar}
+      <div>
+        <Home />
+      </div>
     </div>
   );
 }
