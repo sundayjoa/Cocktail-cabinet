@@ -1,3 +1,55 @@
+@font-face {
+  font-family: 'Makgeolli';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/Makgeolli.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body{
+  font-family: 'Makgeolli' !important;
+}
+
+/*폰트*/
+.font{
+  font-family: 'Makgeolli' !important;
+}
+
+/*네비게이션*/
+.navigation{
+  height: 9vh;
+  background: rgba(69, 165, 255, 0.8) !important;
+}
+
+.logo {
+  height: 6vh;
+  margin-left: 10px;
+}
+
+.logoContainer {
+  display: flex;
+  align-Items: center;
+  height: 100%;
+}
+
+.logo2{
+  font-size: 30px !important;
+  margin-left: 20px !important;
+  font-weight: bold !important;
+}
+
+.logo:hover,
+.logo2:hover {
+  cursor: pointer;
+}
+
+.mypageBtn,
+.cocktailsBtn,
+.loginBtn,
+.membershipBtn{
+  font-size: 25px !important;
+  margin-right: 10px !important;
+}
+
 .App {
   text-align: center;
 }
