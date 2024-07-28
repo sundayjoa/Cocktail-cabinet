@@ -2,8 +2,18 @@ import React from "react";
 import logo from "./images/logo.png";
 import {Grid, TextField, Typography, Button} from "@mui/material";
 import { Link } from 'react-router-dom';
+import { signin } from "./API Service/ApiService";
 
 function Login() {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.target);
+    const userId = data.get("userId");
+    const password = data.get("password");
+
+    //ApiService의 signin 메서드를 사용해 로그인
+    signin({userId: userId, password: password});
+  };
 
     return(
         <div className="Loginpage-container">
@@ -20,10 +30,10 @@ function Login() {
             </div>
           </Grid>
           <Grid item>
-            <form>
+            <form noValidate onSubmit={handleSubmit}>
               <Grid container direction="column" alignItems="center" spacing={3}>
                 <Grid item>
-                  <TextField className="InputId" required fullWidth id="username" label="아이디" name="username" autoComplete="username" />
+                  <TextField className="InputId" required fullWidth id="userId" label="아이디" name="userId" autoComplete="userId" />
                 </Grid>
                 <Grid item>
                   <TextField className="InputPassword"  required fullWidth name="password" label="패스워드" type="password" id="password" autoComplete="current-password" />
