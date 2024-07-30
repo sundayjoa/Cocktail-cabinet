@@ -22,9 +22,9 @@ export function call(api, method, request){
         options.body = JSON.stringify(request);
     }
     return fetch(options.url, options).then((response) => {
-        if (response.status == 200) {
+        if (response.status === 200) {
             return response.json();
-        } else if(response.status == 403){
+        } else if(response.status === 403){
 
         } else {
             Promise.reject(response);
@@ -36,13 +36,18 @@ export function call(api, method, request){
     });
 }
 
+//로그인
 export function signin(userDTO){
     return call("/auth/signin", "POST", userDTO)
         .then((response) => {
             if (response.token){
-                //로컬 스토리지에 토큰 저장
+                //로컬 스토리지에 토큰 및 사용자 정보 저장
                 localStorage.setItem("ACCESS_TOKEN", response.token);
+                localStorage.setItem("USER_ID", response.userId);
+                localStorage.setItem("USERNAME", response.username);
                 window.location.href = "/";
             }
         });
 }
+
+//회원가입

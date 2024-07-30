@@ -24,7 +24,7 @@ body{
 
 .logo {
   height: 6vh;
-  margin-left: 10px;
+  margin-left: 30px;
 }
 
 .logoContainer {
@@ -44,13 +44,58 @@ body{
   cursor: pointer;
 }
 
-.mypageBtn,
-.cocktailsBtn,
 .loginBtn,
-.membershipBtn{
+.membershipBtn,
+.logoutBtn {
   font-size: 25px !important;
-  margin-right: 10px !important;
+  margin-right: 30px !important;
 }
+
+.mypageBtn,
+.cocktailsBtn{
+  font-size: 25px !important;
+  margin-left: 30px !important;
+}
+
+.username{
+  font-size: 25px !important;
+  color: white;
+  margin-left: 30px !important;
+}
+
+.logoutBtn{
+  color: rgb(255, 0, 0) !important;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+}
+
+.dropdownMenu li {
+  padding: 8px 16px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.dropdownMenu li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+  font-size: 22px;
+}
+
+.dropdownMenu li:hover {
+  background-color: #dbdbdb;
+}
+
 
 /*홈 화면*/
 .home-background{
