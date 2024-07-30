@@ -2,8 +2,23 @@ import React from "react";
 import logo from "./images/logo.png";
 import {Grid, TextField, Typography, Button} from "@mui/material";
 import { Link } from 'react-router-dom';
+import { signup } from './API Service/ApiService';
 
 function Membership () {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const data = new FormData(event.target);
+    const userId = data.get("userId");
+    const password = data.get("password");
+    const nickname = data.get("ninkname");
+
+    signup({userID: userId, password: password, nickname: nickname }).then(
+      (response) => {
+        window.location.href = "/login";
+      }
+    );
+  };
 
     return (
         <div className="Membershippage-container">
@@ -20,16 +35,16 @@ function Membership () {
             </div>
           </Grid>
           <Grid item>
-            <form>
+            <form noValidate onSubmit={handleSubmit}>
               <Grid container direction="column" alignItems="center" spacing={3}>
                 <Grid item>
-                  <TextField className="InputId" required fullWidth id="username" label="아이디" name="username" autoComplete="username" />
+                  <TextField className="InputId" required fullWidth id="userId" label="아이디" name="userId" autoComplete="userId" />
                 </Grid>
                 <Grid item>
                   <TextField className="InputPassword"  required fullWidth name="password" label="패스워드" type="password" id="password" autoComplete="current-password" />
                 </Grid>
                 <Grid item>
-                  <TextField className="InputName"  required fullWidth name="nickname" label="닉네임" type="text" id="nichname" autoComplete="nickname" />
+                  <TextField className="InputName"  required fullWidth name="nickname" label="닉네임" type="text" id="nickname" autoComplete="nickname" />
                 </Grid>
                 <Grid item>
                   <Button className="MembershipButton" type="submit" fullWidth variant="contained">

@@ -4,6 +4,7 @@ import './App.css';
 import Home from './Home';
 import { Grid, Toolbar, Typography, Button, AppBar} from "@mui/material";
 import { Link } from 'react-router-dom';
+import { call, signout } from "./API Service/ApiService";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -140,7 +141,7 @@ function App() {
                     </div>
                     </Grid>
                     <Grid item>
-                      <Button color="inherit" className="font logoutBtn">
+                      <Button color="inherit" className="font logoutBtn" onClick={signout}>
                         로그아웃
                       </Button>
                     </Grid>

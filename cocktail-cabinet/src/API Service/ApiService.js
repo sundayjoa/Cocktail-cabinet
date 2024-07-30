@@ -51,3 +51,15 @@ export function signin(userDTO){
 }
 
 //회원가입
+export function signup(userDTO){
+    return call("/auth/signup", "POST", userDTO);
+}
+
+//로그아웃
+export function signout() {
+    //로컬스토리지에 저장된 값 삭제
+    localStorage.removeItem("ACCESS_TOKEN");
+    localStorage.removeItem("USER_ID");
+    localStorage.removeItem("USERNAME");
+    window.location.href = "/";
+}
