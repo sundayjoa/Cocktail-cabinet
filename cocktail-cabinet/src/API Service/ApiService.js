@@ -1,5 +1,11 @@
 import { API_BASE_URL } from "./api-config";
 
+function handleError(response) {
+    return response.json().then((error) => {
+        throw new Error(error.message || response.statusText);
+    });
+}
+
 export function call(api, method, request){
 
     let headers = new Headers({
@@ -21,32 +27,36 @@ export function call(api, method, request){
     if(request){
         options.body = JSON.stringify(request);
     }
-    return fetch(options.url, options).then((response) => {
-        if (response.status === 200) {
-            return response.json();
-        } else if(response.status === 403){
-
-        } else {
-            Promise.reject(response);
-            throw Error(response);
-        }
-    }).catch((error) => {
-        console.log("http error");
-        console.log(error);
-    });
+    return fetch(api, options).then((response) =>
+        response.ok ? response.json() : handleError(response)
+    );
 }
 
 //로그인
 export function signin(userDTO){
     return call("/auth/signin", "POST", userDTO)
         .then((response) => {
-            if (response.token){
-                //로컬 스토리지에 토큰 및 사용자 정보 저장
-                localStorage.setItem("ACCESS_TOKEN", response.token);
-                localStorage.setItem("USER_ID", response.userId);
-                localStorage.setItem("USERNAME", response.username);
-                window.location.href = "/";
+            if (response.ok) {
+                return response.json();
+            } else {
+                return response.json().then((error) => {
+                    throw new Error(error.error || "로그인 실패");
+                });
             }
+        })
+        .then((data) => {
+            if (data.token) {
+                // 로컬 스토리지에 토큰 저장
+                localStorage.setItem("ACCESS_TOKEN", data.token);
+                localStorage.setItem("USER_ID", data.userId);
+                localStorage.setItem("USERNAME", data.username);
+                window.location.href = "/";
+            } else {
+                throw new Error("로그인 실패");
+            }
+        })
+        .catch((error) => {
+            alert("ID 또는 비밀번호가 잘못되었습니다.");
         });
 }
 
