@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import logo from './images/logo.png';
 import './App.css';
 import Home from './Home';
+import CocktailsPage from './CocktailsPage';
 import { Grid, Toolbar, Typography, Button, AppBar} from "@mui/material";
-import { Link } from 'react-router-dom';
+import { Link, Routes, Route } from 'react-router-dom';
 import { call, signout } from "./API Service/ApiService";
 
 function App() {
@@ -116,7 +117,7 @@ function App() {
                       </Button>
                       {dropdownOpenCocktails && (
                         <ul className="dropdownMenu" onClose={handleDropdownCloseCocktails}>
-                          <li><Link to="/">모든 칵테일</Link></li>
+                          <li><Link to="/cocktails">모든 칵테일</Link></li>
                           <li><Link to="/">즐겨찾기 한 칵테일</Link></li>
                           <li><Link to="/">내 냉장고(예정)</Link></li>
                         </ul>
@@ -158,6 +159,9 @@ function App() {
       {isLoggedIn ? loggedInNavigationBar : navigationBar}
       <div>
         <Home />
+        <Routes>
+          <Route path="cocktails" element={<CocktailsPage />} />
+        </Routes>
       </div>
     </div>
   );
