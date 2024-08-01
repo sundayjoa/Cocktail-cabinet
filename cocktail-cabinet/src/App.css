@@ -37,6 +37,8 @@ body{
   font-size: 30px !important;
   margin-left: 20px !important;
   font-weight: bold !important;
+  color: white;
+  text-decoration: none;
 }
 
 .logo:hover,
@@ -98,7 +100,8 @@ body{
 
 
 /*홈 화면*/
-.home-background{
+.home-background,
+.cocktails-background{
   position: absolute;
   top: 0;
   left: 0;
@@ -246,6 +249,46 @@ body{
   border-radius: 20px;
   background-color: #ffffff !important;
 }
+
+
+/*칵테일 페이지*/
+.cocktail-item {
+  position: absolute;
+  top: 65%;
+  left: 20%;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 16px;
+  margin: 8px 0;
+  width: 60%;
+  height: 20vh;
+  background-color: #f9f9f9;
+}
+
+.cocktail-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 10%;
+  margin-right: 18px;
+  margin-left: 8px;
+}
+
+.cocktail-info {
+  margin-left: 16px;
+  flex-direction: column;
+}
+
+.cocktail-name{
+  font-size: 30px;
+}
+
+.cocktail-recipe,
+.cocktail-score{
+  font-size: 20px;
+}
+
 
 .App {
   text-align: center;

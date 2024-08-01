@@ -56,10 +56,10 @@ function Navigation() {
             <Grid item>
               <Grid container alignItems="center">
                 <Grid item className="logoContainer">
-                  <img src={logo} alt="logo" className="logo" />
+                  <img src={logo} alt="logo" className="logo" component={Link} to="/" />
                 </Grid>
                 <Grid item>
-                  <Typography variant="h5" className="font logo2">cocktail-cabinet</Typography>
+                  <Typography variant="h5" className="font logo2" component={Link} to="/">cocktail-cabinet</Typography>
                 </Grid>
               </Grid>
             </Grid>

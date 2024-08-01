@@ -68,3 +68,8 @@ export function signout() {
     localStorage.removeItem("USERNAME");
     window.location.href = "/";
 }
+
+//칵테일 정보 가져오기
+export function getCocktail() {
+    return call("/cocktails/all", "GET", null);
+}
