@@ -252,6 +252,12 @@ body{
 
 
 /*칵테일 페이지*/
+.cocktail-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .cocktail-item {
   position: absolute;
   top: 65%;
@@ -262,6 +268,7 @@ body{
   border-radius: 20px;
   padding: 16px;
   margin: 8px 0;
+  margin-top: 10px;
   width: 60%;
   height: 20vh;
   background-color: #f9f9f9;
