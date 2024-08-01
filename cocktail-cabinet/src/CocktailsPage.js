@@ -5,25 +5,28 @@ import CocktailBackground from './images/Cocktails_background.jpg';
 import { IconButton, TextField, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { getCocktail } from "./API Service/ApiService";
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 
 function CocktailsPage() {
-    const [cocktails, setCocktails] = useState(null);
+    const [cocktails, setCocktails] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getCocktail()
           .then(response => {
-            if (response && response.data) { 
-              setCocktails(response.data);
-              if (response.data.length > 0) {
-                alert(`First cocktail name: ${response.data[0].CocktailName}`);
-              }
+            console.log(response);
+            if (response) {
+              setCocktails(response);
+              setLoading(false);
             } else {
               console.error("No data found in the response.");
+              setLoading(false);
             }
           })
           .catch(error => {
             console.error("Error fetching the cocktails data: ", error);
+            setLoading(false);
           });
       }, []);
 
@@ -53,19 +56,22 @@ function CocktailsPage() {
             />
             </div>
             <div>
-            {cocktails ? (
-                cocktails.map(cocktail => (
-                <div key={cocktail.CocktailName} className="cocktail-item">
-                    <img src={CocktailBackground} alt={cocktail.CocktailName} className="cocktail-image" />
-                    <div className="cocktail-info">
-                    <h3 className="cocktail-name">{cocktail.CocktailName}</h3>
-                    <p className="cocktail-recipe">{cocktail.preparation}</p>
-                    <p className="cocktail-score">별점</p>
-                    </div>
-                </div>
-                ))
+            {loading ? (
+            <p>Loading...</p>
             ) : (
-                <p>Loading...</p>
+                cocktails.map(cocktail => {
+                console.log(`Rendering cocktail with id: ${cocktail.id}`);
+                return (
+                    <div key={cocktail.id} className="cocktail-item">
+                    <img src={CocktailBackground} className="cocktail-image" />
+                    <div className="cocktail-info">
+                        <h3 className="cocktail-name">{cocktail.cocktailName}</h3>
+                        <p className="cocktail-recipe">설명</p>
+                        <p className="cocktail-score">별점</p>
+                    </div>
+                    </div>
+                );
+                })
             )}
             </div>
         </div>
