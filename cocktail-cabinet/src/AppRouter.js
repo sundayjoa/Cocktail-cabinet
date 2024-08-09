@@ -9,7 +9,7 @@ function AppRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="*" element={<App />} />
         <Route path="/login" element={<Login />} />
         <Route path="/membership" element={<Membership />} />
         <Route path="/cocktails" element={<CocktailsPage />} />

@@ -5,11 +5,24 @@ import CocktailBackground from './images/Cocktails_background.jpg';
 import { IconButton, TextField, InputAdornment } from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
 import { getCocktail } from "./API Service/ApiService";
+import { loadGoogleTranslate, triggerTranslateion } from "./API Service/translate";
 
 
 function CocktailsPage() {
     const [cocktails, setCocktails] = useState([]);
     const [loading, setLoading] = useState(true);
+
+    //구글 번역 스크립트 로드
+    useEffect(() => {
+        loadGoogleTranslate();
+    }, []);
+
+    //데이터 로딩 후 번역
+    useEffect(() => {
+        if (!loading) {
+            triggerTranslateion();
+        }
+    }, [loading, cocktails]);
 
     useEffect(() => {
         getCocktail()
@@ -57,19 +70,23 @@ function CocktailsPage() {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                cocktails.map((cocktail, index) => {
-                const uniqueKey = `${cocktail.id}-${index}`;
-                return (
-                    <div key={uniqueKey} className="cocktail-item">
-                    <img src={CocktailBackground} alt={cocktail.cocktailName} className="cocktail-image" />
-                    <div className="cocktail-info">
-                        <h3 className="cocktail-name">{cocktail.cocktailName}</h3>
-                        <p className="cocktail-recipe">설명</p>
-                        <p className="cocktail-score">별점</p>
-                    </div>
-                    </div>
-                );
-                })
+                <>
+                    {console.log(cocktails)}  {/* 배열 데이터를 콘솔에 출력 */}
+                    {cocktails.map((cocktail, index) => {
+                        const uniqueKey = `${cocktail.id}-${index}`;
+                        return (
+                            <div key={uniqueKey} className="cocktail-item">
+                                <img src={CocktailBackground} className="cocktail-image" />
+                                <div className="cocktail-info">
+                                    <h3 className="cocktail-name">{cocktail.cocktailName}</h3>
+                                    <p id={'cocktail-recipe'} className="cocktail-recipe">{cocktail.preparation}</p>
+                                    <p id={'cocktail-ingredients'} className="cocktail-ingredients">재료: {cocktail.ingredients}</p>
+                                    <p className="cocktail-score">별점</p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </>
             )}
             </div>
         </div>
