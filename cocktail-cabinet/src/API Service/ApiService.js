@@ -1,7 +1,6 @@
 import { API_BASE_URL } from "./api-config";
 
 export function call(api, method, request){
-
     let headers = new Headers({
         "Content-Type": "application/json",
     });
@@ -62,13 +61,13 @@ export function signup(userDTO){
 
 //로그아웃
 export function signout() {
-    //로컬스토리지에 저장된 값 삭제
+
+    // 로컬스토리지에 저장된 값 삭제
     localStorage.removeItem("ACCESS_TOKEN");
     localStorage.removeItem("USER_ID");
     localStorage.removeItem("USERNAME");
-    window.location.href = "/";
-}
 
+}
 //칵테일 정보 가져오기
 export function getCocktail() {
     return call("/cocktails/all", "GET", null);

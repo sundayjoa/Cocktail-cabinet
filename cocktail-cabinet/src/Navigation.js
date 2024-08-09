@@ -46,6 +46,9 @@ function Navigation() {
     localStorage.removeItem("USERNAME");
     setIsLoggedIn(false);
     setUser({ userId: '', username: '' });
+
+    //로그아웃 하면 메인 화면으로 리디렉션
+    window.location.replace("/");
   };
 
   const loggedInNavigationBar = (
